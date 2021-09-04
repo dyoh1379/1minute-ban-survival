@@ -1,0 +1,250 @@
+command /bs [<text>]:
+	trigger:
+		if player is op:
+			if arg 1 is not set:
+				send "&c타입을 입력해주세요."
+				stop
+
+			if arg 1 is "start":
+				set {bs} to true
+				set {bs.timer} to 60
+				send "&a게임이 시작되었습니다."
+				stop
+			
+			if arg 1 is "stop":
+				delete {bs}
+				delete {bs.timer}
+				send "&c게임이 종료되었습니다."
+				stop
+
+every 1 seconds:
+	if {bs} is true:
+		if {bs.timer} > 0:
+			subtract 1 from {bs.timer}
+			if {bs.timer} is 0:
+				delete {ban.13.y}
+				set {ban} to random integer between 1 and 20
+				if {ban} is 1:
+					send title " " with subtitle "&c블럭을 파괴하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 2:
+					send title " " with subtitle "&c블럭을 설치하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 3:
+					send title " " with subtitle "&c움직이지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 4:
+					send title " " with subtitle "&c엔티티를 타격하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 5:
+					send title " " with subtitle "&c아이템을 인첸트하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 6:
+					send title " " with subtitle "&c점프하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 7:
+					send title " " with subtitle "&c달리지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 8:
+					send title " " with subtitle "&c웅크리지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 9:
+					send title " " with subtitle "&c수영하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 10:
+					send title " " with subtitle "&c아이템을 버리지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 11:
+					send title " " with subtitle "&c엔티티를 살해하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 12:
+					send title " " with subtitle "&c침대에 눕지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 13:
+					set {ban.13.y} to random integer between 5 and 60
+					send title " " with subtitle "&cY좌표 %{ban.13.y}%이하로 내려가지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 14:
+					send title " " with subtitle "&c음식을 먹지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 15:
+					send title " " with subtitle "&c아이템을 제작하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 16:
+					send title " " with subtitle "&c아이템을 줍지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 17:
+					send title " " with subtitle "&c포탈을 이용하지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 18:
+					send title " " with subtitle "&c탈것에 타지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 19:
+					send title " " with subtitle "&c양손 아이템을 바꾸지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+				if {ban} is 20:
+					send title " " with subtitle "&c양손 아이템을 바꾸지 마세요!" to all players
+					play sound "block.note_block.pling" with volume 1 and pitch 0.5 to all players
+					set {bs.timer} to 60
+		loop all players:
+			if {ban} is 13:
+				if y coord of location of loop-player <= {ban.13.y}:
+					send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!" to loop-player
+					damage loop-player by 2 hearts
+					stop
+
+on break:
+	if {bs.timer} > 50:
+		if {ban} is 1:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on place:
+	if {bs.timer} > 50:
+		if {ban} is 2:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on any move:
+	if {bs.timer} > 50:
+		if {ban} is 3:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on damage:
+	if {bs.timer} > 50:
+		if {ban} is 4:
+			if attacker is player:
+				send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!" to attacker
+				damage attacker by 2 hearts
+				stop
+
+on enchant:
+	if {bs.timer} > 50:
+		if {ban} is 5:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on jump:
+	if {bs.timer} > 50:
+		if {ban} is 6:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on sprint toggle:
+	if {bs.timer} > 50:
+		if {ban} is 7:
+			player is not sprinting
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on sneak toggle:
+	if {bs.timer} > 50:
+		if {ban} is 8:
+			player is not sneaking
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on swim toggle:
+	if {bs.timer} > 50:
+		if {ban} is 9:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on drop:
+	if {bs.timer} > 50:
+		if {ban} is 10:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!" to player
+			damage player by 2 hearts
+			stop
+
+on death:
+	if {bs.timer} > 50:
+		if {ban} is 11:
+			if attacker is online:
+				send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!" to attacker
+				damage attacker by 2 hearts
+				stop
+
+on bed enter:
+	if {bs.timer} > 50:
+		if {ban} is 13:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on consume:
+	if {bs.timer} > 50:
+		if {ban} is 14:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on craft:
+	if {bs.timer} > 50:
+		if {ban} is 15:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on pick up:
+	if {bs.timer} > 50:
+		if {ban} is 16:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!" to player
+			damage player by 2 hearts
+			stop
+
+on portal enter:
+	if {bs.timer} > 50:
+		if {ban} is 17:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on vehicle enter:
+	if {bs.timer} > 50:
+		if {ban} is 18:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on swap hand items:
+	if {bs.timer} > 50:
+		if {ban} is 19:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
+
+on inventory open:
+	if {bs.timer} > 50:
+		if {ban} is 20:
+			send "&c&l규칙을 위반하였기 때문에 피해를 받습니다!"
+			damage player by 2 hearts
+			stop
